@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>Todo List</title>
+</head>
+<body>
+    <div class="background">
+    	<div class="container">
+    	<div class="addTask">
+    		<input type="text" name="Add a task">
+    		<button>Add</button>
+    	</div>
+    		<ol class="notcompleted">
+    			<h3>Not completed</h3>
+    			<!-- <li>task
+    				<button><i class="fa fa-check"></i>
+    				</button>
+    				<button><i class="fa fa-trash"></i></button>
+    			</li> -->
+    		</ol>
+    		<ol class="completed">
+    			<h3>completed</h3>
+    			<!-- <li>task
+    				<button><i class="fa fa-check"></i></button>
+    			</li> -->
+    		</ol>
+
+    	
+    </div>
+    </div>
+    <script type="text/javascript"   >
+    	const input=document.querySelector('input');
+const btn= document.querySelector('.addTask > button');
+btn.addEventListener('click',addList);
+	//  
+
+function addList(e){
+	const notcompleted = document.querySelector('.notcompleted');
+	const completed= document.querySelector('.completed');
+	
+
+
+	const newList= document.createElement('li');
+	const checkbtn= document.createElement('button');
+	const delbtn= document.createElement('button');
+
+	checkbtn.innerHTML = '<i class="fa fa-check"></i>';
+	delbtn.innerHTML= '<i class="fa fa-trash"></i>';
+
+	if(input.value !== '')
+	{
+		newList.textContent= input.value;
+		input.value='';
+		notcompleted.appendChild(newList);
+		newList.appendChild(checkbtn);
+		newList.appendChild(delbtn);
+	}
+	checkbtn.addEventListener('click', function(){
+		const parent= this.parentNode;
+		parent.remove();
+		completed.appendChild(parent);
+		// checkbtn.style.display=none;
+	});
+	delbtn.addEventListener('click', function(){
+		const parent=this.parentNode;
+		parent.remove();
+	})
+}
+    </script>
+</body>
+</html>
